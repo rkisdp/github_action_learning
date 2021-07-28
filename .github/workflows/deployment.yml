@@ -35,7 +35,7 @@ jobs:
     - name: Download task definition
       id: task-download
       run: |
-          aws ecs describe-task-definition --task-definition portfolio-service --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition ${{ secrets.AWS_TASK_FAMILY }} --query taskDefinition > task-definition.json
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
