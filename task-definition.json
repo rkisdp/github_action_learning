@@ -52,28 +52,13 @@
   "placementConstraints": [],
   "memory": "128",
   "taskRoleArn": null,
-  "compatibilities": [
-    "EXTERNAL",
-    "EC2"
-  ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:546251132525:task-definition/portfolio-task:1",
   "family": "portfolio-task",
-  "requiresAttributes": [
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    }
-  ],
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
   ],
   "networkMode": null,
   "cpu": "1024",
-  "revision": 1,
-  "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
   "volumes": []
