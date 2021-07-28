@@ -27,7 +27,8 @@ name: Deploy to Amazon ECS
 
 on:
   push:
-    types: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
