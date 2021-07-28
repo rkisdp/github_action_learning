@@ -72,4 +72,3 @@ jobs:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: ${{ secrets.AWS_SERVICE }}
         cluster: ${{ secrets.AWS_CLUSTER }}
-        wait-for-service-stability: true
