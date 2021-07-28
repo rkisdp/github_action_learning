@@ -24,10 +24,9 @@
 #    and best practices on handling the access key credentials.
 
 name: Deploy to Amazon ECS
-
 on:
-  push:
-    types: [ main ]
+  repository_dispatch:
+    types: [push]
 
 jobs:
   build:
