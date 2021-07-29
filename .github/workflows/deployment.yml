@@ -37,6 +37,7 @@ jobs:
           echo USE_I18N=${{ secrets.USE_I18N }} >> .env
           echo USE_L10N=${{ secrets.USE_L10N }} >> .env
           echo USE_TZ=${{ secrets.USE_TZ }} >> .env
+          cat .env
 
 
     - name: Build, tag, and push image to Amazon ECR
