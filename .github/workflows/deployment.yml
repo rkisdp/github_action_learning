@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -31,11 +31,13 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        aws ecr describe-repositories --output text | awk '{print $5}' | while read line; do  aws ecr list-images --repository-name $line --filter tagStatus=UNTAGGED --query 'imageIds[*]' --output text | while read imageId; do aws ecr batch-delete-image --repository-name $line --image-ids imageDigest=$imageId; done; done
 
     - name: Download task definition
       id: task-download
       run: |
           aws ecs describe-task-definition --task-definition ${{ secrets.AWS_TASK_FAMILY }} --query taskDefinition > task-definition.json
+          aws ecs deregister-task-definition --task-definition task_defination_name:revision_no
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
