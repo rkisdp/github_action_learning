@@ -21,22 +21,27 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Create env file
+      run: |
+          touch .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+          echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+          echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+          echo DB_USER=${{ secrets.DB_USER }} >> .env
+          echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
+          echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+          echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
+          echo DEBUG=${{ secrets.DEBUG }} >> .env
+          echo LANGUAGE_CODE=${{ secrets.LANGUAGE_CODE }} >> .env
+          echo TIME_ZONE=${{ secrets.TIME_ZONE }} >> .env
+          echo USE_I18N=${{ secrets.USE_I18N }} >> .env
+          echo USE_L10N=${{ secrets.USE_L10N }} >> .env
+          echo USE_TZ=${{ secrets.USE_TZ }} >> .env
+
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_NAME: ${{ secrets.DB_NAME }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-        DEBUG: ${{ secrets.DEBUG }}
-        LANGUAGE_CODE: ${{ secrets.LANGUAGE_CODE }}
-        TIME_ZONE: ${{ secrets.TIME_ZONE }}
-        USE_I18N: ${{ secrets.USE_I18N }}
-        USE_L10N: ${{ secrets.USE_L10N }}
-        USE_TZ: ${{ secrets.USE_TZ }}
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.MY_AWS_ECR }}
         IMAGE_TAG: ${{ secrets.AWS_IMAGE_TAG }}
