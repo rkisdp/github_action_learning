@@ -39,7 +39,7 @@ jobs:
           echo USE_TZ=${{ secrets.USE_TZ }} >> .env
           cat .env
           pwd
-          ls
+          ls -a
 
 
     - name: Build, tag, and push image to Amazon ECR
