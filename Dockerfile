@@ -20,7 +20,6 @@ RUN apk --update add \
 RUN mkdir /app
 WORKDIR /app
 ADD . /app
-COPY .env.prod .env
 RUN pip install -r requirements/base.txt
 EXPOSE 8000
 RUN python manage.py migrate --no-input
