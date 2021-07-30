@@ -5,6 +5,6 @@ services:
   myapp:
     build:
       context: .
-    container_name: myapp01xj1
+    container_name: rkisdp
     env_file:
-      - .env
+      - .env.prod
