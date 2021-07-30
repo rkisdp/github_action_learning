@@ -19,6 +19,7 @@ RUN apk --update add \
 
 RUN mkdir /app
 WORKDIR /app
+COPY .env.prod .env
 ADD . /app
 RUN pip install -r requirements/base.txt
 EXPOSE 8000
