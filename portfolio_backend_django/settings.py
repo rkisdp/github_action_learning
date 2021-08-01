@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = False
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -119,11 +119,11 @@ LANGUAGE_CODE = config('LANGUAGE_CODE')
 
 TIME_ZONE = config('TIME_ZONE')
 
-USE_I18N = config('USE_I18N', default=True, cast=bool)
+USE_I18N = True
 
-USE_L10N = config('USE_L10N', default=True, cast=bool)
+USE_L10N = True
 
-USE_TZ = config('USE_TZ', default=True, cast=bool)
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
