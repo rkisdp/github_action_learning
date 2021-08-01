@@ -28,6 +28,9 @@ jobs:
         ECR_REPOSITORY: ${{ secrets.MY_AWS_ECR }}
         IMAGE_TAG: ${{ secrets.AWS_IMAGE_TAG }}
       run: |
+        touch .env
+        echo DEBUG=${{ env.DEBUG }} >> .env
+        cat .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
