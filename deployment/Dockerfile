@@ -23,7 +23,7 @@ RUN mkdir -p /etc/supervisord/conf.d
 COPY ./deployment/supervisord.conf /etc/supervisord/supervisord.conf
 COPY ./deployment/gunicorn.sh /usr/local/bin/gunicorn.sh
 WORKDIR /app
-ADD .. /app
+ADD . /app
 RUN pip install --upgrade pip setuptools wheel
 RUN pip3 install -r requirements/prod.txt
 # nginx conf
