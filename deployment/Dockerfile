@@ -31,4 +31,6 @@ RUN mkdir -p /run/nginx
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./deployment/nginx/nginx.conf /etc/nginx/nginx.conf
 RUN chmod +x /usr/local/bin/gunicorn.sh
+RUN python manage.py migrate --no-input
+RUN python manage.py collectstatic --no-input
 CMD ["supervisord", "-n", "-c", "/etc/supervisord/supervisord.conf"]
