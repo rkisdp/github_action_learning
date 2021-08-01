@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv(str))
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'PORT': int(config('DB_PORT')),
     }
 }
 
@@ -119,11 +119,11 @@ LANGUAGE_CODE = config('LANGUAGE_CODE')
 
 TIME_ZONE = config('TIME_ZONE')
 
-USE_I18N = config('USE_I18N', cast=bool)
+USE_I18N = config('USE_I18N', default=True, cast=bool)
 
-USE_L10N = config('USE_L10N', cast=bool)
+USE_L10N = config('USE_L10N', default=True, cast=bool)
 
-USE_TZ = config('USE_TZ', cast=bool)
+USE_TZ = config('USE_TZ', default=True, cast=bool)
 
 
 # Static files (CSS, JavaScript, Images)
