@@ -25,7 +25,7 @@ COPY ./deployment/gunicorn.sh /usr/local/bin/gunicorn.sh
 WORKDIR /app
 ADD .. /app
 RUN pip install --upgrade pip setuptools wheel
-RUN pip3 install -r base.txt
+RUN pip3 install -r requirements/prod.txt
 # nginx conf
 RUN mkdir -p /run/nginx
 RUN rm /etc/nginx/conf.d/default.conf
