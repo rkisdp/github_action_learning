@@ -1,6 +1,6 @@
 # I know this is dirty work but this will be changed if something else found
 import json
-f = open('../../env.json')
+f = open('env.json')
 data = json.load(f)
 f.close()
 a = open("../../.env", "w")
