@@ -22,7 +22,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Create ENV file
-      id: task-download
+      id: env-handler
       run: |
         aws ecs describe-task-definition --task-definition ${{ secrets.AWS_TASK_FAMILY }} --query \
         taskDefinition.containerDefinitions[0].environment > env.json
