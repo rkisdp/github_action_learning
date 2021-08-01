@@ -16,12 +16,10 @@ RUN apk --update add \
     make \
     nginx \
     nginx-mod-http-headers-more
-
 RUN mkdir /app
 WORKDIR /app
-COPY .env.prod .env
 ADD . /app
-RUN pip install -r requirements/base.txt
+RUN pip install -r requirements.txt
 EXPOSE 8000
 RUN python manage.py migrate --no-input
 RUN python manage.py collectstatic --no-input
