@@ -21,14 +21,6 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Create ENV file
-      id: env-handler
-      run: |
-        aws ecs describe-task-definition --task-definition ${{ secrets.AWS_TASK_FAMILY }} --query \
-        taskDefinition.containerDefinitions[0].environment > env.json
-        python env_handler.py
-
-
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
