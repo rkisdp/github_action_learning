@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 NAME="portfolio.backend.django"                           # Name of the application
 DJANGODIR=/app                                    # Django project directory
