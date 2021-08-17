@@ -36,7 +36,7 @@ COPY . $app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --upgrade pip setuptools wheel
-RUN pip3 install --trusted-host pypi.python.org -r requirements/$requirements
+RUN pip3 install --trusted-host pypi.python.org -r requirements/development.txt
 
 # nginx conf
 RUN mkdir -p /run/nginx
