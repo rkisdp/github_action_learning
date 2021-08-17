@@ -1,24 +1,17 @@
-version: '3.7'
+version: "3"
 
 services:
-  django_gunicorn:
-    volumes:
-      - static:/static
-    env_file:
-      - .env
+  portfolio-backend-django:
+    container_name: portfolio_backend_django
+    restart: always
     build:
       context: .
-    ports:
-      - "8000:8000"
-  nginx:
-    build: ./nginx
+      dockerfile: config/prod/Dockerfile
+      args:
+        PROJECT: portfolio_backend_django
+        REQUIREMENTS: production.txt
     volumes:
-      - static:/static
+      - .:/app
     ports:
       - "80:80"
-    depends_on:
-      - django_gunicorn
-
-volumes:
-  static:
-
+    env_file: .env.prod

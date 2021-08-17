@@ -1,0 +1,7 @@
+-r base.txt
+black==19.3b0
+django-debug-toolbar==2.2
+ipython==7.15.0
+pytest-testmon==0.9.19
+pytest-watch==4.2.0
+pytest-cov==2.8.1
