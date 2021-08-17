@@ -15,7 +15,7 @@ export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 # Start Gunicorn processes
 echo Starting Gunicorn.
 exec gunicorn portfolio_backend_django.wsgi:application \
-    --bind=0.0.0.0:8003 \
+    --bind=0.0.0.0:8000 \
     --user=$USER --group=$GROUP --name=$NAME \
     --workers=$NUM_WORKERS \
     --log-level=info \
