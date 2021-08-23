@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME="portfolio.backend.django"                           # Name of the application
+NAME="portfolio.backend.django"                   # Name of the application
 DJANGODIR=/app                                    # Django project directory
 USER=root                                         # the user to run as TODO: change to www-user
 GROUP=root                                        # the group to run as
@@ -14,7 +14,7 @@ export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
 # Start Gunicorn processes
 echo Starting Gunicorn.
-exec gunicorn portfolio_backend_django.wsgi:application \
+exec gunicorn portfolio_backend_django.asgi:application \
     --bind=0.0.0.0:8000 \
     --user=$USER --group=$GROUP --name=$NAME \
     --workers=$NUM_WORKERS \
