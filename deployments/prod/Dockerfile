@@ -30,7 +30,7 @@ RUN apk --update add \
 # Creating folders and copy required content
 RUN mkdir /app
 RUN mkdir -p /etc/supervisord/conf.d
-COPY ./config/prod/supervisord.conf /etc/supervisord/supervisord.conf
+COPY ./deployments/prod/supervisord.conf /etc/supervisord/supervisord.conf
 WORKDIR /app
 COPY . $app
 
@@ -41,10 +41,10 @@ RUN pip3 install --trusted-host pypi.python.org -r requirements/development.txt
 # nginx conf
 RUN mkdir -p /run/nginx
 RUN rm /etc/nginx/conf.d/default.conf
-COPY ./config/prod/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./deployments/prod/nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY ./config/prod/migration_script.sh /usr/local/bin/migration_script.sh
-COPY ./config/prod/gunicorn_start.sh /usr/local/bin/gunicorn_start.sh
+COPY ./deployments/prod/migration_script.sh /usr/local/bin/migration_script.sh
+COPY ./deployments/prod/gunicorn_start.sh /usr/local/bin/gunicorn_start.sh
 
 # Application entrypoint
 RUN chmod +x /usr/local/bin/migration_script.sh
