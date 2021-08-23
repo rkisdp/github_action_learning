@@ -6,7 +6,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: deployments/prod/Dockerfile
+      dockerfile: deployments/Dockerfile
       args:
         PROJECT: portfolio_backend_django
     volumes:
