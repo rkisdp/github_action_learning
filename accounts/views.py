@@ -4,5 +4,6 @@ from .task import celery_test_task
 # Create your views here.
 
 def test(request):
+    print("before celery")
     celery_test_task.delay()
     return HttpResponse('Done')
