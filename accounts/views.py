@@ -7,3 +7,6 @@ def test(request):
     print("before celery")
     celery_test_task.delay()
     return HttpResponse('Done')
+
+def testv2(request):
+    return HttpResponse('Done')
