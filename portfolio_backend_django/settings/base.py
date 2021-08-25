@@ -135,11 +135,12 @@ USE_TZ = config('USE_TZ', cast=bool)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+import os
 STATIC_URL = '/static/'
-STATIC_ROOT = Path(BASE_DIR, 'static')
+STATIC_ROOT = '/static/'
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = Path(BASE_DIR, 'media')
+MEDIA_ROOT = '/media/'
 
 
 # Default primary key field type
@@ -157,7 +158,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = config('CELERY_TIMEZONE')
 CELERY_RESULT_BACKEND = 'django-db'
 
-#Celery Beat
+# Celery Beat
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CORS_ORIGIN_ALLOW_ALL = True
