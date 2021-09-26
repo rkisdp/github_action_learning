@@ -1,10 +1,10 @@
 from .base import *
-from decouple import config
+from django.conf import settings
 
 
-if config("ENV_STAGE") == 'Production':
+if settings.ENV_STAGE == 'Production':
     from .production import *
-elif config("ENV_STAGE") == 'Staging':
+elif settings.ENV_STAGE == 'Staging':
     from .staging import *
 else:
     from .local import *
