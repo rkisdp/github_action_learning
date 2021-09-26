@@ -1,7 +1,21 @@
 from django.urls import path
-from . import views
+from . import apis
+
 
 urlpatterns = [
-    path('', views.testv2, name="celery_test_task"),
-    path('accounts/', views.test, name="celery_test_task"),
+    path(
+        'register/',
+        apis.RegisterUser.as_view(),
+        name="user_register_api"
+    ),
+    path(
+        'me/',
+        apis.UserRetrieveUpdateAPIView.as_view(),
+        name="user_get_update_api"
+    ),
+    path(
+        'login/',
+        apis.CustomAuthToken.as_view(),
+        name="login_api"
+    ),
 ]
