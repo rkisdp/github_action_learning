@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from decouple import config, Csv
-from firebase_admin import initialize_app
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,20 +52,11 @@ THIRD_PARTY_APPS = [
     'corsheaders',
     'storages',
     'import_export',
-    'fcm_django',
     'django_filters',
     'rest_framework.authtoken',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
-
-FIREBASE_APP = initialize_app()
-
-FCM_DJANGO_SETTINGS = {
-    "ONE_DEVICE_PER_USER": False,
-    "DELETE_INACTIVE_DEVICES": False,
-    "UPDATE_ON_DUPLICATE_REG_ID": True,
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

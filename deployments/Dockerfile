@@ -10,6 +10,7 @@ ENV PYTHONUNBUFFERED 1
 # Install system dependencies
 RUN apk --update add \
     postgresql-dev \
+    libffi-dev \
     gcc \
     python3-dev \
     musl-dev \
