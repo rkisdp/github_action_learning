@@ -1,11 +1,12 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 from common.models import Notification, NotificationTemplate, ActivityConfig
 
 # Register your models here.
 
 
 @admin.register(Notification)
-class NotificationAdmin(admin.ModelAdmin):
+class NotificationAdmin(ImportExportModelAdmin):
     list_filter = ('type',)
     list_display = ('id', 'type', 'user_id')
     readonly_fields = ('create_date', 'modified_date')
@@ -13,7 +14,7 @@ class NotificationAdmin(admin.ModelAdmin):
 
 
 @admin.register(ActivityConfig)
-class ActivityConfigAdmin(admin.ModelAdmin):
+class ActivityConfigAdmin(ImportExportModelAdmin):
     list_filter = ('activity_name',)
     list_display = ('id', 'activity_name')
     search_fields = ('id', 'activity_name')
@@ -21,7 +22,7 @@ class ActivityConfigAdmin(admin.ModelAdmin):
 
 
 @admin.register(NotificationTemplate)
-class NotificationTemplateAdmin(admin.ModelAdmin):
+class NotificationTemplateAdmin(ImportExportModelAdmin):
     search_fields = ('id', 'name', )
     list_filter = ('notification_type',)
     list_display = ('id', 'notification_type', 'name')
