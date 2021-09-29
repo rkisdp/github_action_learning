@@ -35,7 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(
         verbose_name=_('First Name'),
         max_length=128,
-        db_index=True
     )
     last_name = models.CharField(
         verbose_name=_('Last Name'),
@@ -67,6 +66,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = [
         'first_name',
         'last_name',
+        'phone',
+        'email'
     ]
 
     class Meta:
