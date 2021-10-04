@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Python imports
+# python imports
 from __future__ import unicode_literals
 from contextlib import suppress
 from typing import List, Optional
@@ -29,23 +29,23 @@ def send_mail(
     reply_to: Optional[List[str]] = None,
 ):
     """
-        Set Context
+    Set Context
 
-        Args:
-            to (str, list): send mail to given email or emails
-            body (str): content of body (html supported)
-            subject (str): subject of the mail
-            from_email (str): email of the sender if not given read from env
-            bcc (str, list): add given emails to bcc
-            cc (str, list): add given emails to cc
-            reply_to (str, list): add given emails for reply
+    Args:
+        to (str, list): send mail to given email or emails
+        body (str): content of body (html supported)
+        subject (str): subject of the mail
+        from_email (str): email of the sender if not given read from env
+        bcc (str, list): add given emails to bcc
+        cc (str, list): add given emails to cc
+        reply_to (str, list): add given emails for reply
 
-        Return:
-            None
+    Return:
+        None
 
-        Raises:
-            Exception: if to address not provided
-            Exception: if sending email fails
+    Raises:
+        Exception: if to address not provided
+        Exception: if sending email fails
     """
     if cc is None:
         cc = []

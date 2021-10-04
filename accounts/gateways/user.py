@@ -43,4 +43,3 @@ def get_user(
         user = UserModel.objects.get(**args)
         return user
     return None
-

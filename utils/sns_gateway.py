@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Python imports
+# python imports
 from __future__ import unicode_literals
 
 import json

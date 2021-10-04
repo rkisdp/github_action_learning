@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# python imports
 from __future__ import unicode_literals
 
 # lib imports
@@ -14,5 +15,5 @@ class ListTestimonialsView(ListAPIView):
     serializer_class = TestimonialSerializers
 
     def get_queryset(self):
-        return self.model.objects.all()
+        return self.model.objects.filter_is_delete().order_by('create_date')
 

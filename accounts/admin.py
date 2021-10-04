@@ -29,4 +29,3 @@ class VerificationTokenAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'token', 'token_type', 'is_valid')
     readonly_fields = ('create_date', 'modified_date')
     search_fields = ('id', 'user')
-
