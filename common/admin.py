@@ -1,8 +1,12 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+# lib imports
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from common.models import Notification, NotificationTemplate, ActivityConfig
 
-# Register your models here.
+# project imports
+from common.models import Notification, NotificationTemplate, ActivityConfig
 
 
 @admin.register(Notification)

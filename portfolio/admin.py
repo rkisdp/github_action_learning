@@ -1,7 +1,13 @@
+# -*- coding: utf-8 -*-
+# python imports
+from __future__ import unicode_literals
+
+# lib imports
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
+
+# project imports
 from portfolio.models import Project, Testimonial
-# Register your models here.
 
 
 @admin.register(Project)

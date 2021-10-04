@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # python import
 from __future__ import unicode_literals
 import uuid

@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+# lib imports
 from django.urls import path
-from . import apis
+
+# project imports
+from accounts import apis
 
 
 urlpatterns = [
@@ -17,5 +23,15 @@ urlpatterns = [
         'login/',
         apis.CustomAuthToken.as_view(),
         name="login_api"
+    ),
+    path(
+        'otp-login/request/',
+        apis.OTPRequestAuthToken.as_view(),
+        name="otp_login_request_api"
+    ),
+    path(
+        'otp-login/verify/',
+        apis.OTPVerifyAuthToken.as_view(),
+        name="otp_login_verify_api"
     ),
 ]

@@ -1,8 +1,14 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+# lib imports
 from rest_framework import serializers
+
+# project imports
 from common.models import Notification
 
 
-class NotificationSerializers(serializers.ModelSerializer):
+class NotificationSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         data['user_id'] = self.context['request'].user.id
