@@ -6,11 +6,11 @@ from __future__ import unicode_literals
 from rest_framework import serializers
 
 # project imports
-from portfolio.models import Testimonial
+from portfolio.models import Project
 
 
-class TestimonialSerializer(serializers.ModelSerializer):
+class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Testimonial
+        model = Project
         fields = '__all__'
         datetime_fields = ('create_date', 'modified_date')
