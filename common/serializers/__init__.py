@@ -1,1 +1,1 @@
-from .notification import NotificationSerializers
+from .notification import NotificationSerializer

@@ -1,9 +1,12 @@
+# python imports
 from __future__ import unicode_literals
 
+# lib imports
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import BaseUserManager
 
+# project imports
 from utils.core.managers.timestampable import TimeStampableMixin
 
 

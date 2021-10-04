@@ -1,14 +1,37 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+# lib imports
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
 
+# project imports
 from accounts.models import User
+from accounts import messages
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
+
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        extra_kwargs = {'password': {'write_only': True}}
+        fields = (
+            'id', 'first_name', 'last_name', 'email', 'username',
+            'phone', 'date_joined', 'password'
+        )
+        read_only_fields = (
+            'id', 'is_superuser', 'is_superuser', 'is_deleted',
+            'is_staff', 'is_active', 'groups', 'user_permissions'
+        )
+        datetime_fields = ("create_date", "modified_date")
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
         fields = (
             'id', 'first_name', 'last_name', 'email', 'username',
-            'phone', 'create_date', 'modified_date', 'password'
+            'phone', 'date_joined', 'password'
         )
         read_only_fields = (
             'id', 'is_superuser', 'is_superuser', 'is_deleted',
@@ -27,7 +50,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = super(UserSerializer, self).create(validated_data)
-        user.set_password(validated_data['password'])
+        if validated_data['password']:
+            user.set_password(validated_data['password'])
         user.save()
         return user
 
@@ -59,13 +83,15 @@ class LoginSerializers(serializers.ModelSerializer):
         password = data.get('password')
 
         if username and password:
-            user = authenticate(request=self.context.get('request'),
-                                username=username, password=password)
+            user = authenticate(
+                request=self.context.get('request'),
+                username=username, password=password
+            )
             if not user:
-                msg = _('Unable to log in with provided credentials.')
+                msg = messages.INVALID_CREDENTIALS
                 raise serializers.ValidationError(msg, code='authorization')
         else:
-            msg = _('Must include "username" and "password".')
+            msg = messages.USERNAME_PASS_NULL
             raise serializers.ValidationError(msg, code='authorization')
 
         data['user'] = user

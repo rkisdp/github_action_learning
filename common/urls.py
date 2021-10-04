@@ -8,8 +8,8 @@ urlpatterns = [
         name="notifications_list_api"
     ),
     path(
-        "notifications/<int:pk>/",
+        "notification/<int:pk>/",
         notification.GetDeleteNotificationView.as_view(),
-        name="notification_list_api"
+        name="notification_api"
     )
 ]

@@ -1,5 +1,6 @@
 # python imports
 from __future__ import unicode_literals
+import json
 
 # lib imports
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -9,12 +10,11 @@ from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from rest_framework_jwt.settings import api_settings
 
 # project imports
 from accounts.serializers import UserSerializer
-
-jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
+from accounts.gateways import user as user_db_gateway
+from accounts.gateways import verification_token as verification_token_db_gateway
 
 
 class RegisterUser(generics.CreateAPIView):
@@ -59,3 +59,41 @@ class CustomAuthToken(ObtainAuthToken):
                 'token': token.key,
             }, status.HTTP_201_CREATED
         )
+
+
+class OTPRequestAuthToken(generics.CreateAPIView):
+    def post(self, request, **kwargs):
+        body = json.loads(request.body)
+        user = user_db_gateway.get_user(phone=body.get('phone'))
+        verification_token_db_gateway.create_verification_token(
+            data={'user_id': user.id, 'token_type': 'SMS', }
+        )
+        return Response({}, status.HTTP_201_CREATED)
+
+
+class OTPVerifyAuthToken(generics.CreateAPIView):
+    def post(self, request, **kwargs):
+        body = json.loads(request.body)
+        otp, phone = body.get('otp'), body.get('phone')
+        token_type = body.get('type', 'SMS')
+        user = user_db_gateway.get_user(phone=phone)
+        verification_token = verification_token_db_gateway.get_user_valid_token(
+            user_id=user.id, token_type=token_type
+        )
+        if verification_token and verification_token.token == otp:
+            token, created = Token.objects.get_or_create(user=user)
+            return Response(
+                {
+                    'id': user.pk,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email,
+                    'phone': user.phone,
+                    'token': token.key,
+                }, status.HTTP_201_CREATED
+            )
+        else:
+            return Response(
+                {'status': 'invalid user token'},
+                status.HTTP_400_BAD_REQUEST
+            )
