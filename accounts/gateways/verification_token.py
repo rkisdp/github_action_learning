@@ -33,35 +33,6 @@ def create_verification_token(
     return orm_verification_token
 
 
-def update_verification_token(
-    pk: int,
-    data: dict
-) -> VerificationTokenModel:
-    """
-    Update Verification Token instance by primary Key
-
-    Args:
-        pk: int
-        data: dictionary
-
-    Returns:
-        :obj: VerificationToken:
-            VerificationToken entity of VerificationTokenModel object
-
-    Raises:
-        None
-    """
-    verification_token = VerificationTokenModel.objects.get(
-        id=pk
-    )
-    verification_token.is_valid = verification_token_entity.is_valid
-    verification_token.number_attempts = (
-        verification_token_entity.number_attempts
-    )
-    verification_token.save()
-    return verification_token
-
-
 def get_user_valid_token(
     user_id: int, token_type: str
 ) -> Optional[VerificationTokenModel]:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+# python imports
 from __future__ import unicode_literals
 
 # lib imports
-from rest_framework_jwt.settings import api_settings
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
@@ -10,11 +10,6 @@ from rest_framework import serializers
 # project imports
 from accounts.models import User
 from accounts import messages
-
-jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
-jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -96,4 +91,3 @@ class LoginSerializers(serializers.ModelSerializer):
 
         data['user'] = user
         return data
-

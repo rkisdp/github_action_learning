@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# python imports
+from __future__ import unicode_literals
+
+# lib imports
 from storages.backends.s3boto3 import S3Boto3Storage
 
 
