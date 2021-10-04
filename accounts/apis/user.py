@@ -66,7 +66,7 @@ class OTPRequestAuthToken(generics.CreateAPIView):
         body = json.loads(request.body)
         user = user_db_gateway.get_user(phone=body.get('phone'))
         verification_token_db_gateway.create_verification_token(
-            data={'user_id': user.id, 'token_type': 'SMS', }
+            data={'user_id': user.id, 'token_type': 'SMS'}
         )
         return Response({}, status.HTTP_201_CREATED)
 

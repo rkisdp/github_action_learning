@@ -43,3 +43,11 @@ class GetDeleteNotificationView(RetrieveDestroyAPIView):
             serializer = self.serializer_class(notification_entity)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response({"detail": "Resource does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, *args, **kwargs):
+        with suppress(Notification.DoesNotExist):
+            notification_db_gateway.get_notification(
+                pk=kwargs.get('pk'), user_id=self.request.user.id, type="PUSH"
+            ).delete()
+            return Response({"detail": "Resource deleted successfully"}, status=status.HTTP_202_ACCEPTED)
+        return Response({"detail": "Resource does not exist"}, status=status.HTTP_404_NOT_FOUND)

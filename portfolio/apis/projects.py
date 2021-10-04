@@ -6,14 +6,13 @@ from __future__ import unicode_literals
 from rest_framework.generics import ListAPIView
 
 # project imports
-from portfolio.models import Testimonial
-from portfolio.serializers.testimonials import TestimonialSerializer
+from portfolio.models import Project
+from portfolio.serializers.projects import ProjectSerializer
 
 
-class ListTestimonialsView(ListAPIView):
-    model = Testimonial
-    serializer_class = TestimonialSerializer
+class ListProjectsView(ListAPIView):
+    model = Project
+    serializer_class = ProjectSerializer
 
     def get_queryset(self):
         return self.model.objects.filter_is_delete().order_by('create_date')
-

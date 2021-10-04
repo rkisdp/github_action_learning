@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # project imports
 from utils.core.models import TimeStampable
+from portfolio.managers.projects import ProjectQueryset, ProjectManager
 
 
 class Project(TimeStampable):
@@ -30,6 +31,8 @@ class Project(TimeStampable):
         default=dict,
         null=True, blank=True
     )
+
+    objects = ProjectManager.from_queryset(ProjectQueryset)()
 
     class Meta:
         app_label = 'portfolio'
