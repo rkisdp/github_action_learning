@@ -7,7 +7,9 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
 # project imports
-from portfolio.models import Project, Testimonial, Skill, Role
+from portfolio.models import (
+    Project, Testimonial, Skill, Role, Timeline
+)
 
 
 @admin.register(Project)
@@ -38,3 +40,9 @@ class RoleAdmin(ImportExportModelAdmin):
     readonly_fields = ('create_date', 'modified_date')
     search_fields = ('id', 'name')
 
+
+@admin.register(Timeline)
+class TimelineAdmin(ImportExportModelAdmin):
+    list_display = ('id', 'title', 'from_date', 'to_date')
+    readonly_fields = ('create_date', 'modified_date')
+    search_fields = ('id', 'title')
