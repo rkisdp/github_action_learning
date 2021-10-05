@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveDestroyAPIView
 
 # project imports
+from common import messages, constants
 from common.gateways import notification as notification_db_gateway
 from common.models import Notification
 from common.serializers import NotificationSerializer
@@ -38,16 +39,16 @@ class GetDeleteNotificationView(RetrieveDestroyAPIView):
     def get(self, request, *args, **kwargs):
         with suppress(Notification.DoesNotExist):
             notification_entity = notification_db_gateway.get_notification(
-                pk=kwargs.get('pk'), user_id=self.request.user.id, type="PUSH"
+                pk=kwargs.get('pk'), user_id=self.request.user.id, type=constants.PUSH
             )
             serializer = self.serializer_class(notification_entity)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response({"detail": "Resource does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'detail': messages.COMMON_NOTIFICATION_NO_OBJECT}, status=status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, *args, **kwargs):
         with suppress(Notification.DoesNotExist):
             notification_db_gateway.get_notification(
-                pk=kwargs.get('pk'), user_id=self.request.user.id, type="PUSH"
+                pk=kwargs.get('pk'), user_id=self.request.user.id, type=constants.PUSH
             ).delete()
-            return Response({"detail": "Resource deleted successfully"}, status=status.HTTP_202_ACCEPTED)
-        return Response({"detail": "Resource does not exist"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'detail': messages.COMMON_NOTIFICATION_DELETE}, status=status.HTTP_202_ACCEPTED)
+        return Response({'detail': messages.COMMON_NOTIFICATION_NO_OBJECT}, status=status.HTTP_404_NOT_FOUND)

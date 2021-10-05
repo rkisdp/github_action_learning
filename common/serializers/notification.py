@@ -11,10 +11,6 @@ from common.models import Notification
 
 class NotificationSerializer(serializers.ModelSerializer):
 
-    def validate(self, data):
-        data['user_id'] = self.context['request'].user.id
-        return data
-
     class Meta:
         model = Notification
         fields = '__all__'

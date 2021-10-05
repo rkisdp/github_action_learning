@@ -9,6 +9,9 @@ from utils.core.managers import TimeStampableMixin
 
 class NotificationQueryset(TimeStampableMixin):
 
+    def filter_by_user_and_type(self, user_id: int, type: str = 'PUSH'):
+        return self.filter(user_id=user_id, type=type)
+
     def select_relate_user(self):
         return self.select_related("user")
 
