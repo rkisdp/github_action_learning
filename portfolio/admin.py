@@ -7,7 +7,7 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
 # project imports
-from portfolio.models import Project, Testimonial
+from portfolio.models import Project, Testimonial, Skill
 
 
 @admin.register(Project)
@@ -22,3 +22,11 @@ class TestimonialAdmin(ImportExportModelAdmin):
     list_display = ('id', 'review_name', 'designation')
     readonly_fields = ('create_date', 'modified_date')
     search_fields = ('id', 'review_name', 'designation')
+
+
+@admin.register(Skill)
+class SkillAdmin(ImportExportModelAdmin):
+    list_display = ('id', 'name', 'level')
+    list_filter = ('level',)
+    readonly_fields = ('create_date', 'modified_date')
+    search_fields = ('id', 'name')
