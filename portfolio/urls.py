@@ -7,7 +7,7 @@ from django.urls import path
 
 # project imports
 from portfolio.apis import (
-    testimonials, projects
+    testimonials, projects, skills
 )
 
 urlpatterns = [
@@ -20,5 +20,10 @@ urlpatterns = [
         "projects/",
         projects.ListProjectsView.as_view(),
         name="projects_list_api"
+    ),
+    path(
+        "skills/",
+        skills.ListSkillsView.as_view(),
+        name="skills_list_api"
     ),
 ]
