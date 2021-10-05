@@ -32,7 +32,7 @@ def activation_token():
     Raise:
         None
     """
-    return str(abs(hash(f"{uuid.uuid4()}")) % (10 ** 4))
+    return str(abs(hash(f'{uuid.uuid4()}')) % (10 ** 4))
 
 
 class VerificationToken(TimeStampable):

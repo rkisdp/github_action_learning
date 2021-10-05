@@ -7,7 +7,7 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
 # project imports
-from portfolio.models import Project, Testimonial, Skill
+from portfolio.models import Project, Testimonial, Skill, Role
 
 
 @admin.register(Project)
@@ -30,3 +30,11 @@ class SkillAdmin(ImportExportModelAdmin):
     list_filter = ('level',)
     readonly_fields = ('create_date', 'modified_date')
     search_fields = ('id', 'name')
+
+
+@admin.register(Role)
+class RoleAdmin(ImportExportModelAdmin):
+    list_display = ('id', 'name')
+    readonly_fields = ('create_date', 'modified_date')
+    search_fields = ('id', 'name')
+

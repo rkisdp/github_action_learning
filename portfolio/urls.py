@@ -7,23 +7,28 @@ from django.urls import path
 
 # project imports
 from portfolio.apis import (
-    testimonials, projects, skills
+    testimonials, projects, skills, rolls
 )
 
 urlpatterns = [
     path(
-        "testimonials/",
+        'testimonials/',
         testimonials.ListTestimonialsView.as_view(),
-        name="testimonial_list_api"
+        name='testimonial_list_api'
     ),
     path(
-        "projects/",
+        'projects/',
         projects.ListProjectsView.as_view(),
-        name="projects_list_api"
+        name='projects_list_api'
     ),
     path(
-        "skills/",
+        'skills/',
         skills.ListSkillsView.as_view(),
-        name="skills_list_api"
+        name='skills_list_api'
+    ),
+    path(
+        'roles/',
+        rolls.ListRolesView.as_view(),
+        name='roles_list_api'
     ),
 ]
