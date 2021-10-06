@@ -27,8 +27,12 @@ class SocialLink(TimeStampable):
     Description of SocialLink Model
     """
     name = models.CharField(
-        verbose_name=_('Type of notification'),
+        verbose_name=_('Name'),
         max_length=32
+    )
+    url = models.URLField(
+        verbose_name=_('URL'),
+        null=True, blank=True
     )
     image = models.ImageField(
         verbose_name=_('Image'),
