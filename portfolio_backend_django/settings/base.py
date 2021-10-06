@@ -42,7 +42,8 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'accounts',
     'common',
-    'portfolio'
+    'portfolio',
+    'contact',
 ]
 
 THIRD_PARTY_APPS = [
@@ -199,6 +200,6 @@ REST_FRAMEWORK = {
 }
 
 
-ENV_STAGE = config("ENV_STAGE")
+ENV_STAGE = config('ENV_STAGE')
 
 AUTH_USER_MODEL = 'accounts.User'
