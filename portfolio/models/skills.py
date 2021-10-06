@@ -55,8 +55,7 @@ class Skill(TimeStampable):
         verbose_name_plural = _('Skills')
 
     def __str__(self):
-        return f"id: {self.id} - skill: {self.name}"
+        return f'id: {self.id} - skill: {self.name}'
 
     def __unicode__(self):
-        return f"id: {self.id} - skill: {self.name}"
-
+        return f'id: {self.id} - skill: {self.name}'
