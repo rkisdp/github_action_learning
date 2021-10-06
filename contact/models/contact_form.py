@@ -36,8 +36,8 @@ class ContactForm(TimeStampable):
 
     class Meta:
         app_label = 'contact'
-        verbose_name = _('Contact Form')
-        verbose_name_plural = _('Contact Forms')
+        verbose_name = _('Contact me form')
+        verbose_name_plural = _('Contact me forms')
 
     def __str__(self):
         return self.email
