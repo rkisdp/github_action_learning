@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
 
 urlpatterns = [
+    path('', lambda request: HttpResponse("Healthy", content_type="text/plain")),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('common/', include('common.urls')),
