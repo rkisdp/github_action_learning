@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # project imports
 from utils.core.models import TimeStampable
-from portfolio.managers.rolls import RoleQueryset, RoleManager
+from portfolio.managers.roles import RoleQueryset, RoleManager
 
 
 class Role(TimeStampable):

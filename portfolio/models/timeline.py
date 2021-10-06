@@ -52,7 +52,7 @@ class Timeline(TimeStampable):
     class Meta:
         app_label = 'portfolio'
         verbose_name = _('Timeline')
-        verbose_name_plural = _('Timelines')
+        verbose_name_plural = _('Timeline')
 
     def __str__(self):
         return f'id: {self.id} - name: {self.title}'

@@ -7,7 +7,7 @@ from rest_framework.generics import ListAPIView
 
 # project imports
 from portfolio.models import Role
-from portfolio.serializers.rolls import RoleSerializer
+from portfolio.serializers.roles import RoleSerializer
 
 
 class ListRolesView(ListAPIView):
