@@ -28,6 +28,12 @@ class TimeStampable(models.Model):
         verbose_name=_("Is Instance marked Active"),
         default=True
     )
+    extra_data = models.JSONField(
+        verbose_name=_("Extra Data"),
+        default=dict,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         abstract = True

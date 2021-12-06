@@ -203,3 +203,5 @@ REST_FRAMEWORK = {
 ENV_STAGE = config('ENV_STAGE')
 
 AUTH_USER_MODEL = 'accounts.User'
+FCM_SERVER_TOKEN = config('FCM_SERVER_TOKEN')
+FCM_HOST = 'https://fcm.googleapis.com/fcm/send'
