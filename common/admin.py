@@ -7,7 +7,9 @@ from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
 # project imports
-from common.models import Notification, NotificationTemplate, ActivityConfig
+from common.models import (
+    Notification, NotificationTemplate, ActivityConfig, DeviceToken
+)
 
 
 @admin.register(Notification)
@@ -31,4 +33,12 @@ class NotificationTemplateAdmin(ImportExportModelAdmin):
     search_fields = ('id', 'name', )
     list_filter = ('notification_type',)
     list_display = ('id', 'notification_type', 'name')
+    readonly_fields = ('create_date', 'modified_date')
+
+
+@admin.register(DeviceToken)
+class DeviceTokenAdmin(ImportExportModelAdmin):
+    search_fields = ('id',)
+    list_filter = ('device_type',)
+    list_display = ('id', 'user', 'device_type',)
     readonly_fields = ('create_date', 'modified_date')
