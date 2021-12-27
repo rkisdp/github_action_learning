@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  database:
+    image: mdillon/postgis:10
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:alpine
+
+  portfolio-backend-django:
+    container_name: portfolio_backend_django
+    restart: always
+    env_file: .env
+    build:
+      context: .
+      dockerfile: deployments/Dockerfile
+      args:
+        PROJECT: portfolio_backend_django
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+      - redis
+
+volumes:
+  pgdata:
+  redisdata:
