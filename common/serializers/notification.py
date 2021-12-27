@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from rest_framework import serializers
 
 # project imports
-from common.models import Notification
+from common.models import Notification, DeviceToken
 
 
 class NotificationSerializer(serializers.ModelSerializer):
@@ -17,3 +17,9 @@ class NotificationSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'user')
         datetime_fields = ('create_date', 'modified_date')
 
+
+class DeviceTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DeviceToken
+        fields = '__all__'
+        datetime_fields = ('create_date', 'modified_date')

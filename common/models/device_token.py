@@ -27,16 +27,16 @@ class DeviceToken(TimeStampable):
         to=USER,
         on_delete=models.CASCADE,
         related_name='user_device_tokens',
-        null=True,
-        blank=True,
+        null=True, blank=True,
     )
     device_token = models.CharField(
-        verbose_name=_('Device Token'), max_length=256, db_index=True
+        verbose_name=_('Device Token'),
+        max_length=256, db_index=True
     )
     device_type = models.CharField(
         verbose_name=_('Device Type'),
-        choices=constants.DEVICE_TOKEN_DEVICES,
-        default=constants.ANDROID,
+        choices=constants.DeviceTypeChoice.choices,
+        default=constants.DeviceTypeChoice.ANDROID,
         max_length=16,
     )
 

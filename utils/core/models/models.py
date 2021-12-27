@@ -31,8 +31,7 @@ class TimeStampable(models.Model):
     extra_data = models.JSONField(
         verbose_name=_("Extra Data"),
         default=dict,
-        blank=True,
-        null=True
+        blank=True, null=True
     )
 
     class Meta:

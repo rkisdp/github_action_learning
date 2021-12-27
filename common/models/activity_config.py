@@ -24,7 +24,7 @@ class ActivityConfig(TimeStampable):
     activity_name = models.CharField(
         verbose_name=_("Activity Name"),
         max_length=64,
-        choices=constants.ACTIVITY_CHOICES,
+        choices=constants.ActivityChoice.choices,
         unique=True,
     )
 
@@ -33,8 +33,7 @@ class ActivityConfig(TimeStampable):
         on_delete=models.CASCADE,
         verbose_name=_("Email Template"),
         related_name="email_template_activity_configs",
-        null=True,
-        blank=True,
+        null=True, blank=True,
     )
 
     sms_template = models.ForeignKey(
@@ -42,16 +41,14 @@ class ActivityConfig(TimeStampable):
         on_delete=models.CASCADE,
         verbose_name=_("SMS Template"),
         related_name="sms_template_activity_configs",
-        null=True,
-        blank=True,
+        null=True, blank=True,
     )
     push_template = models.ForeignKey(
         to=NotificationTemplate,
         on_delete=models.CASCADE,
         verbose_name=_("Push Template"),
         related_name="push_template_activity_configs",
-        null=True,
-        blank=True,
+        null=True, blank=True,
     )
 
     objects = ActivityConfigManager.from_queryset(ActivityConfigQuerySet)()

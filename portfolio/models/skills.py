@@ -37,7 +37,7 @@ class Skill(TimeStampable):
     )
     level = models.CharField(
         verbose_name=_('Level'),
-        choices=constants.SKILL_TYPES,
+        choices=constants.SKillType.choices,
         max_length=32,
         null=True, blank=True
     )

@@ -24,7 +24,7 @@ class NotificationTemplate(TimeStampable):
     notification_type = models.CharField(
         verbose_name=_('Notification Type'),
         max_length=8,
-        choices=constants.NOTIFICATION_TYPE_CHOICES,
+        choices=constants.NotificationTypeChoice.choices,
     )
     subject = models.TextField(
         verbose_name=_('Notification Subject')

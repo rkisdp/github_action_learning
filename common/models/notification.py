@@ -31,8 +31,8 @@ class Notification(TimeStampable):
     )
     type = models.CharField(
         verbose_name=_('Type of notification'),
-        choices=constants.NOTIFICATION_TYPE_CHOICES,
-        default=constants.PUSH,
+        choices=constants.NotificationTypeChoice.choices,
+        default=constants.NotificationTypeChoice.PUSH,
         max_length=32
     )
     extra_data = models.JSONField(

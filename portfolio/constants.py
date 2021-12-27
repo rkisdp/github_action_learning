@@ -3,16 +3,11 @@
 from __future__ import unicode_literals
 
 # lib imports
+from django.db.models import TextChoices
 from django.utils.translation import ugettext_lazy as _
 
 
-ADVANCE_TYPE = 'ADVANCE'
-INTERMEDIATE_TYPE = 'INTERMEDIATE'
-BEGINNER_TYPE = 'BEGINNER'
-
-
-SKILL_TYPES = (
-    (ADVANCE_TYPE, _('Advance')),
-    (INTERMEDIATE_TYPE, _('Intermediate')),
-    (BEGINNER_TYPE, _('Beginner'))
-)
+class SKillType(TextChoices):
+    ADVANCE_TYPE = 'ADVANCE', _('Advance')
+    INTERMEDIATE_TYPE = 'INTERMEDIATE', _('Intermediate')
+    BEGINNER_TYPE = 'BEGINNER', _('Beginner')

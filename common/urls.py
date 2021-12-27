@@ -18,5 +18,10 @@ urlpatterns = [
         "notification/<int:pk>/",
         notification.GetDeleteNotificationView.as_view(),
         name="notification_api"
+    ),
+    path(
+        "notification/register-device/",
+        notification.RegisterDeviceView.as_view(),
+        name="register_device_api"
     )
 ]

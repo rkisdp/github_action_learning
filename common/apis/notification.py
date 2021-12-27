@@ -7,13 +7,13 @@ from contextlib import suppress
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveDestroyAPIView, CreateAPIView
 
 # project imports
 from common import messages, constants
 from common.gateways import notification as notification_db_gateway
-from common.models import Notification
-from common.serializers import NotificationSerializer
+from common.models import Notification, DeviceToken
+from common.serializers import NotificationSerializer, DeviceTokenSerializer
 
 
 class ListNotificationView(ListAPIView):
@@ -52,3 +52,19 @@ class GetDeleteNotificationView(RetrieveDestroyAPIView):
             ).delete()
             return Response({'detail': messages.COMMON_NOTIFICATION_DELETE}, status=status.HTTP_202_ACCEPTED)
         return Response({'detail': messages.COMMON_NOTIFICATION_NO_OBJECT}, status=status.HTTP_404_NOT_FOUND)
+
+
+class RegisterDeviceView(CreateAPIView):
+
+    model = DeviceToken
+    serializer_class = DeviceTokenSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(request.user.id, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        data = {
+            'detail': 'Device Registered',
+            'data': serializer.data
+        }
+        return Response(data=data, status=status.HTTP_404_NOT_FOUND)

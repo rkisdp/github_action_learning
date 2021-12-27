@@ -9,11 +9,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 # project imports
-from accounts.constants import (
-    TOKEN_TYPES,
-    EMAIL_TYPE,
-    VALID_NUMBER_OF_ATTEMPTS,
-)
+from accounts import constants
 from utils.core.models import TimeStampable
 from accounts.managers.verification_token import (
     VerificationTokenQueryset,
@@ -59,8 +55,8 @@ class VerificationToken(TimeStampable):
 
     token_type = models.CharField(
         verbose_name=_("Token Type"),
-        choices=TOKEN_TYPES,
-        default=EMAIL_TYPE,
+        choices=constants.TokenType.choices,
+        default=constants.TokenType.EMAIL_TYPE,
         max_length=32,
         help_text=_(
             "How this token is going to be used select from the choices"
@@ -78,7 +74,7 @@ class VerificationToken(TimeStampable):
         default=0,
         help_text=_(
             "Max number for a token be valid are {}".format(
-                VALID_NUMBER_OF_ATTEMPTS
+                constants.VALID_NUMBER_OF_ATTEMPTS
             )
         ),
     )
