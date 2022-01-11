@@ -44,14 +44,8 @@ RUN mkdir -p /run/nginx
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./deployments/nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY ./deployments/scripts/migration_script.sh /usr/local/bin/migration_script.sh
-COPY ./deployments/scripts/celery.sh /usr/local/bin/celery.sh
-COPY ./deployments/scripts/celerybeat.sh /usr/local/bin/celerybeat.sh
 COPY ./deployments/scripts/gunicorn_start.sh /usr/local/bin/gunicorn_start.sh
 
 # Application entrypoint
-RUN chmod +x /usr/local/bin/migration_script.sh
-RUN chmod +x /usr/local/bin/celery.sh
-RUN chmod +x /usr/local/bin/celerybeat.sh
 RUN chmod +x /usr/local/bin/gunicorn_start.sh
 CMD ["supervisord", "-n", "-c", "/etc/supervisord/supervisord.conf"]

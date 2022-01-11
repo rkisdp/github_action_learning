@@ -11,7 +11,10 @@ echo "Starting $NAME as `whoami`"
 
 cd $DJANGODIR
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
-
+python manage.py collectstatic --noinput
+echo "===Running Migrate==="
+python manage.py migrate --noinput
+echo "===END==="
 # Start Gunicorn processes
 echo Starting Gunicorn.
 exec gunicorn portfolio_backend_django.wsgi:application \
