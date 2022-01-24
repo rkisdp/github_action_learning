@@ -15,4 +15,4 @@ class ListRolesView(ListAPIView):
     serializer_class = RoleSerializer
 
     def get_queryset(self):
-        return self.model.objects.filter_is_delete().order_by('create_date')
+        return self.model.objects.filter_is_delete().order_by("create_date")

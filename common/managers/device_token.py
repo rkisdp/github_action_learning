@@ -16,7 +16,7 @@ class DeviceTokenQueryset(models.QuerySet):
         return self.filter(user_id=user_id)
 
     def select_relate_user(self):
-        return self.select_related('user')
+        return self.select_related("user")
 
 
 class DeviceTokenManager(models.Manager):

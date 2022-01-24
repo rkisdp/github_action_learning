@@ -26,4 +26,3 @@ class ActivityConfigQuerySet(TimeStampableMixin):
 class ActivityConfigManager(models.Manager):
     def get_queryset(self):
         return ActivityConfigQuerySet(self.model, using=self._db)
-

@@ -5,28 +5,25 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('portfolio', '0005_timeline'),
-    ]
+    dependencies = [("portfolio", "0005_timeline")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='timeline',
-            options={'verbose_name': 'Timeline', 'verbose_name_plural': 'Timeline'},
+            name="timeline", options={"verbose_name": "Timeline", "verbose_name_plural": "Timeline"}
         ),
         migrations.AddField(
-            model_name='role',
-            name='extra_data',
-            field=models.JSONField(blank=True, default=dict, null=True, verbose_name='Extra Data'),
+            model_name="role",
+            name="extra_data",
+            field=models.JSONField(blank=True, default=dict, null=True, verbose_name="Extra Data"),
         ),
         migrations.AddField(
-            model_name='testimonial',
-            name='extra_data',
-            field=models.JSONField(blank=True, default=dict, null=True, verbose_name='Extra Data'),
+            model_name="testimonial",
+            name="extra_data",
+            field=models.JSONField(blank=True, default=dict, null=True, verbose_name="Extra Data"),
         ),
         migrations.AddField(
-            model_name='timeline',
-            name='extra_data',
-            field=models.JSONField(blank=True, default=dict, null=True, verbose_name='Extra Data'),
+            model_name="timeline",
+            name="extra_data",
+            field=models.JSONField(blank=True, default=dict, null=True, verbose_name="Extra Data"),
         ),
     ]

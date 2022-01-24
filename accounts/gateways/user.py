@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 # python imports
 from __future__ import unicode_literals
+
 from contextlib import suppress
 from typing import Optional
-
 
 # project imports
 from accounts.models import User as UserModel
 
 
 def get_user(
-        pk: Optional[int] = 0,
-        username: Optional[str] = "",
-        email: Optional[str] = "",
-        phone: Optional[str] = "",
+    pk: Optional[int] = 0,
+    username: Optional[str] = "",
+    email: Optional[str] = "",
+    phone: Optional[str] = "",
 ):
     """
     Get User

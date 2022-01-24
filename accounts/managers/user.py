@@ -3,9 +3,9 @@
 from __future__ import unicode_literals
 
 # lib imports
+from django.contrib.auth.models import BaseUserManager
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import BaseUserManager
 
 # project imports
 from utils.core.managers.timestampable import TimeStampableMixin
@@ -46,40 +46,33 @@ class UserQuerySet(TimeStampableMixin):
         return self.exclude(is_staff=True)
 
     def exclude_staff_and_self(self, current_user):
-        return self.exclude(
-            models.Q(is_staff=True) |
-            models.Q(id=current_user.id))
+        return self.exclude(models.Q(is_staff=True) | models.Q(id=current_user.id))
 
     def select_related_profile(self):
         return self.select_related("user_profile")
 
 
 class UserManager(BaseUserManager):
-
-    def create_user(self, phone, email=None, first_name=None,
-                    last_name=None, password=None, **extra_fields):
+    def create_user(
+        self, phone, email=None, first_name=None, last_name=None, password=None, **extra_fields
+    ):
         """
         Creates and saves a User with the given phone,
         password and name extra data
         """
         if not phone:
-            raise ValueError(_('Users must have a valid phone number'))
+            raise ValueError(_("Users must have a valid phone number"))
         email = self.normalize_email(email).lower()
-        if 'username' not in extra_fields:
-            extra_fields['username'] = phone
+        if "username" not in extra_fields:
+            extra_fields["username"] = phone
         user = self.model(
-            phone=phone,
-            email=email,
-            first_name=first_name,
-            last_name=last_name,
-            **extra_fields
+            phone=phone, email=email, first_name=first_name, last_name=last_name, **extra_fields
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, phone, first_name, last_name,
-                         password, email, **extra_fields):
+    def create_superuser(self, phone, first_name, last_name, password, email, **extra_fields):
         """
         Creates and saves a superuser with the given phone and password.
         """

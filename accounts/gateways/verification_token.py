@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # python imports
 from __future__ import unicode_literals
+
 from contextlib import suppress
 from typing import Optional
 
@@ -8,9 +9,7 @@ from typing import Optional
 from accounts.models import VerificationToken as VerificationTokenModel
 
 
-def create_verification_token(
-    data: dict
-) -> VerificationTokenModel:
+def create_verification_token(data: dict) -> VerificationTokenModel:
     """
     Save a Verification Token instance to database.
 
@@ -25,17 +24,13 @@ def create_verification_token(
         None
     """
     orm_verification_token = VerificationTokenModel(
-        user_id=data.get('user_id'),
-        token_type=data.get('token_type', 'SMS'),
-        token=True
+        user_id=data.get("user_id"), token_type=data.get("token_type", "SMS"), token=True
     )
     orm_verification_token.save()
     return orm_verification_token
 
 
-def get_user_valid_token(
-    user_id: int, token_type: str
-) -> Optional[VerificationTokenModel]:
+def get_user_valid_token(user_id: int, token_type: str) -> Optional[VerificationTokenModel]:
     """
     Filter User Valid Token for token type
 

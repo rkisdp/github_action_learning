@@ -12,5 +12,5 @@ from portfolio.models import Timeline
 class TimelineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Timeline
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

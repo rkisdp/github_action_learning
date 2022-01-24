@@ -12,5 +12,5 @@ from portfolio.models import Project
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

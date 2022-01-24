@@ -1,2 +1,1 @@
-from .notification import NotificationSerializer
-from .notification import DeviceTokenSerializer
+from .notification import DeviceTokenSerializer, NotificationSerializer

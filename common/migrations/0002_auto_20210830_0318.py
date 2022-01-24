@@ -6,19 +6,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('common', '0001_initial'),
-    ]
+    dependencies = [("common", "0001_initial")]
 
     operations = [
         migrations.AlterField(
-            model_name='notification',
-            name='extra_data',
-            field=django.contrib.postgres.fields.jsonb.JSONField(blank=True, default=dict, null=True, verbose_name='Extra data'),
+            model_name="notification",
+            name="extra_data",
+            field=django.contrib.postgres.fields.jsonb.JSONField(
+                blank=True, default=dict, null=True, verbose_name="Extra data"
+            ),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='notification',
-            field=models.TextField(max_length=256, verbose_name='Notification'),
+            model_name="notification",
+            name="notification",
+            field=models.TextField(max_length=256, verbose_name="Notification"),
         ),
     ]

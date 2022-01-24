@@ -12,5 +12,5 @@ from portfolio.models import Skill
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # python imports
 from __future__ import unicode_literals
+
 from contextlib import suppress
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from typing import List, Optional
 
 # lib imports
 import boto3
-from django.conf import settings
-from email.mime.text import MIMEText
 from botocore.exceptions import ClientError
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
+from django.conf import settings
 
 # project imports
 from utils import messages
 
-
-ses_client = boto3.client(service_name='ses', region_name=settings.AWS_REGION)
+ses_client = boto3.client(service_name="ses", region_name=settings.AWS_REGION)
 
 
 def send_mail(
@@ -56,28 +56,13 @@ def send_mail(
     if not to:
         raise Exception(messages.EMAIL_TO_REQUIRED)
     message = {
-        'Subject': {
-            'Data': subject, 
-            'Charset': 'UTF-8'
-        },
-        'Body': {
-            'Html': {
-                'Data': body, 
-                'Charset': 'UTF-8'
-            }
-        },
+        "Subject": {"Data": subject, "Charset": "UTF-8"},
+        "Body": {"Html": {"Data": body, "Charset": "UTF-8"}},
     }
-    destination = {
-        'ToAddresses': to, 
-        'CcAddresses': cc, 
-        'BccAddresses': bcc
-    }
+    destination = {"ToAddresses": to, "CcAddresses": cc, "BccAddresses": bcc}
     with suppress(ClientError):
         ses_client.send_email(
-            Source=from_email,
-            Destination=destination,
-            Message=message,
-            ReplyToAddresses=reply_to,
+            Source=from_email, Destination=destination, Message=message, ReplyToAddresses=reply_to
         )
     raise Exception(messages.EMAIL_SEND_FAIL)
 
@@ -103,26 +88,14 @@ def send_raw_mail(
     filename = attachment_file
 
     with open(filename, "rb") as attachment:
-        part = MIMEApplication(
-            attachment.read()
-        )
-        part.add_header(
-            "Content-Disposition",
-            "attachment",
-            filename=filename
-        )
+        part = MIMEApplication(attachment.read())
+        part.add_header("Content-Disposition", "attachment", filename=filename)
     msg.attach(part)
-    destination = {
-        'ToAddresses': to,
-        'CcAddresses': cc,
-        'BccAddresses': bcc
-    }
+    destination = {"ToAddresses": to, "CcAddresses": cc, "BccAddresses": bcc}
     response = ses_client.send_raw_email(
         Source=from_email,
         Destinations=destination,
-        RawMessage={
-            "Data": msg.as_string()
-        },
+        RawMessage={"Data": msg.as_string()},
         ReplyToAddresses=reply_to,
     )
     print(response)

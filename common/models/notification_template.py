@@ -8,8 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 
 # project imports
 from common import constants
+from common.managers.notification_template import (
+    NotificationTemplateManager, NotificationTemplateQuerySet)
 from utils.core.models import TimeStampable
-from common.managers.notification_template import NotificationTemplateManager, NotificationTemplateQuerySet 
 
 
 class NotificationTemplate(TimeStampable):
@@ -17,31 +18,22 @@ class NotificationTemplate(TimeStampable):
     Description of NotificationTemplate Model
     """
 
-    name = models.CharField(
-        verbose_name=_('Notification template name'),
-        max_length=64
-    )
+    name = models.CharField(verbose_name=_("Notification template name"), max_length=64)
     notification_type = models.CharField(
-        verbose_name=_('Notification Type'),
+        verbose_name=_("Notification Type"),
         max_length=8,
         choices=constants.NotificationTypeChoice.choices,
     )
-    subject = models.TextField(
-        verbose_name=_('Notification Subject')
-    )
-    content = models.TextField(
-        verbose_name=_('Notification Content')
-    )
+    subject = models.TextField(verbose_name=_("Notification Subject"))
+    content = models.TextField(verbose_name=_("Notification Content"))
 
     objects = NotificationTemplateManager.from_queryset(NotificationTemplateQuerySet)()
 
     class Meta:
-        app_label = 'common'
-        verbose_name = _('Notification Template')
-        verbose_name_plural = _('Notification Templates')
-        indexes = [
-            models.Index(fields=['notification_type']),
-        ]
+        app_label = "common"
+        verbose_name = _("Notification Template")
+        verbose_name_plural = _("Notification Templates")
+        indexes = [models.Index(fields=["notification_type"])]
 
     def __unicode__(self):
         return self.name

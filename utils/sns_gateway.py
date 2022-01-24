@@ -2,7 +2,6 @@
 # python imports
 from __future__ import unicode_literals
 
-import json
 from contextlib import suppress
 from typing import Optional
 
@@ -10,19 +9,13 @@ from typing import Optional
 import boto3
 from django.conf import settings
 
-
 sns_client = boto3.client(
-    service_name="sns",
-    region_name=settings.AWS_REGION,
-    endpoint_url=settings.AWS_SNS_ENDPOINT,
+    service_name="sns", region_name=settings.AWS_REGION, endpoint_url=settings.AWS_SNS_ENDPOINT
 )
 
 
 def send_sms(
-    phone_number: str,
-    subject: str,
-    message: str,
-    transaction: Optional[bool] = True,
+    phone_number: str, subject: str, message: str, transaction: Optional[bool] = True
 ) -> str:
     """
     Send Sms to the given number

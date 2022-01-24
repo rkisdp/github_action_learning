@@ -5,23 +5,21 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('contact', '0001_initial'),
-    ]
+    dependencies = [("contact", "0001_initial")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='contactform',
-            options={'verbose_name': 'Contact me form', 'verbose_name_plural': 'Contact me forms'},
+            name="contactform",
+            options={"verbose_name": "Contact me form", "verbose_name_plural": "Contact me forms"},
         ),
         migrations.AddField(
-            model_name='sociallink',
-            name='url',
-            field=models.URLField(blank=True, null=True, verbose_name='URL'),
+            model_name="sociallink",
+            name="url",
+            field=models.URLField(blank=True, null=True, verbose_name="URL"),
         ),
         migrations.AlterField(
-            model_name='sociallink',
-            name='name',
-            field=models.CharField(max_length=32, verbose_name='Name'),
+            model_name="sociallink",
+            name="name",
+            field=models.CharField(max_length=32, verbose_name="Name"),
         ),
     ]

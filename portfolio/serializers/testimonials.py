@@ -12,5 +12,5 @@ from portfolio.models import Testimonial
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

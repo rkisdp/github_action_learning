@@ -7,7 +7,6 @@ from django.db import models
 
 
 class TimeStampableMixin(models.QuerySet):
-
     def filter_ids(self, ids: list):
         return self.filter(id__in=ids)
 

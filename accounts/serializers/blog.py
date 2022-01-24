@@ -12,5 +12,5 @@ from accounts.models import Blog
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

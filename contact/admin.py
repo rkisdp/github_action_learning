@@ -12,13 +12,13 @@ from contact.models import ContactForm, SocialLink
 
 @admin.register(ContactForm)
 class ContactFormAdmin(ImportExportModelAdmin):
-    list_display = ('id', 'name', 'email', 'contact_number')
-    readonly_fields = ('create_date', 'modified_date')
-    search_fields = ('id', 'name', 'email', 'contact_number')
+    list_display = ("id", "name", "email", "contact_number")
+    readonly_fields = ("create_date", "modified_date")
+    search_fields = ("id", "name", "email", "contact_number")
 
 
 @admin.register(SocialLink)
 class SocialLinkAdmin(ImportExportModelAdmin):
-    list_display = ('id', 'name')
-    readonly_fields = ('create_date', 'modified_date')
-    search_fields = ('id', 'name')
+    list_display = ("id", "name")
+    readonly_fields = ("create_date", "modified_date")
+    search_fields = ("id", "name")

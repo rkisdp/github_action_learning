@@ -12,5 +12,5 @@ from contact.models import ContactForm
 class ContactFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactForm
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

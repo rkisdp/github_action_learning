@@ -12,5 +12,5 @@ from contact.models import SocialLink
 class SocialLinkSerializer(serializers.ModelSerializer):
     class Meta:
         model = SocialLink
-        fields = '__all__'
-        datetime_fields = ('create_date', 'modified_date')
+        fields = "__all__"
+        datetime_fields = ("create_date", "modified_date")

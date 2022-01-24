@@ -10,18 +10,16 @@ from common.apis import notification
 
 urlpatterns = [
     path(
-        "notifications/",
-        notification.ListNotificationView.as_view(),
-        name="notifications_list_api"
+        "notifications/", notification.ListNotificationView.as_view(), name="notifications_list_api"
     ),
     path(
         "notification/<int:pk>/",
         notification.GetDeleteNotificationView.as_view(),
-        name="notification_api"
+        name="notification_api",
     ),
     path(
         "notification/register-device/",
         notification.RegisterDeviceView.as_view(),
-        name="register_device_api"
-    )
+        name="register_device_api",
+    ),
 ]

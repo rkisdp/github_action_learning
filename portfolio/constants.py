@@ -8,6 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class SKillType(TextChoices):
-    ADVANCE_TYPE = 'ADVANCE', _('Advance')
-    INTERMEDIATE_TYPE = 'INTERMEDIATE', _('Intermediate')
-    BEGINNER_TYPE = 'BEGINNER', _('Beginner')
+    ADVANCE_TYPE = "ADVANCE", _("Advance")
+    INTERMEDIATE_TYPE = "INTERMEDIATE", _("Intermediate")
+    BEGINNER_TYPE = "BEGINNER", _("Beginner")

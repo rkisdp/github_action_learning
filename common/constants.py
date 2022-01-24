@@ -21,8 +21,10 @@ class NotificationTypeChoice(TextChoices):
 class ActivityChoice(TextChoices):
     ACCOUNTS_USER_REGISTER = "ACCOUNTS_USER_REGISTER", _("Accounts User Register")
     ACCOUNTS_USER_LOGIN = "ACCOUNTS_USER_LOGIN", _("Accounts User Login")
-    ACCOUNTS_USER_FORGET_PASSWORD = "ACCOUNTS_USER_FORGET_PASSWORD", _("Accounts User Forget Password")
+    ACCOUNTS_USER_FORGET_PASSWORD = (
+        "ACCOUNTS_USER_FORGET_PASSWORD",
+        _("Accounts User Forget Password"),
+    )
     ACCOUNTS_USER_UPDATE = "ACCOUNTS_USER_UPDATE", _("Accounts User Update")
     ACCOUNTS_USER_PHONE_UPDATE = "ACCOUNTS_USER_PHONE_UPDATE", _("Accounts User Phone Update")
     ACCOUNT_USER_LOGIN_OTP = "ACCOUNT_USER_LOGIN_OTP", _("Accounts User Login OTP")
-

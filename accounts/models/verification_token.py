@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 # python imports
 from __future__ import unicode_literals
+
 import uuid
 
 # lib imports
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 # project imports
 from accounts import constants
+from accounts.managers.verification_token import (VerificationTokenManager,
+                                                  VerificationTokenQueryset)
 from utils.core.models import TimeStampable
-from accounts.managers.verification_token import (
-    VerificationTokenQueryset,
-    VerificationTokenManager,
-)
 
 USER = get_user_model()
 
@@ -29,7 +28,7 @@ def activation_token():
     Raise:
         None
     """
-    return str(abs(hash(f'{uuid.uuid4()}')) % (10 ** 4))
+    return str(abs(hash(f"{uuid.uuid4()}")) % (10 ** 4))
 
 
 class VerificationToken(TimeStampable):
@@ -58,9 +57,7 @@ class VerificationToken(TimeStampable):
         choices=constants.TokenType.choices,
         default=constants.TokenType.EMAIL_TYPE,
         max_length=32,
-        help_text=_(
-            "How this token is going to be used select from the choices"
-        ),
+        help_text=_("How this token is going to be used select from the choices"),
     )
 
     is_valid = models.BooleanField(
@@ -73,9 +70,7 @@ class VerificationToken(TimeStampable):
         verbose_name=_("Number Attempts"),
         default=0,
         help_text=_(
-            "Max number for a token be valid are {}".format(
-                constants.VALID_NUMBER_OF_ATTEMPTS
-            )
+            "Max number for a token be valid are {}".format(constants.VALID_NUMBER_OF_ATTEMPTS)
         ),
     )
 
@@ -86,9 +81,7 @@ class VerificationToken(TimeStampable):
         help_text=_("Pass more information here in extra data"),
     )
 
-    objects = VerificationTokenManager.from_queryset(
-        VerificationTokenQueryset
-    )()
+    objects = VerificationTokenManager.from_queryset(VerificationTokenQueryset)()
 
     class Meta:
         app_label = "accounts"

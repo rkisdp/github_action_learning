@@ -15,5 +15,4 @@ class ListTestimonialsView(ListAPIView):
     serializer_class = TestimonialSerializer
 
     def get_queryset(self):
-        return self.model.objects.filter_is_delete().order_by('create_date')
-
+        return self.model.objects.filter_is_delete().order_by("create_date")

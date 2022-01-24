@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # Python imports
 from __future__ import unicode_literals
-from typing import Dict
+
 import json
+from typing import Dict
 
 # lib imports
-from requests import request
 from django.conf import settings
+from requests import request
 
 # ORM imports
 from common.models import DeviceToken
@@ -24,9 +25,7 @@ def push(user_id: int, notification_data: Dict) -> None:
         None
     """
     url = settings.FCM_HOST
-    devices = DeviceToken.objects.filter(user_id=user_id).values_list(
-        "pk", flat=True
-    )
+    devices = DeviceToken.objects.filter(user_id=user_id).values_list("pk", flat=True)
 
     payload = {
         "registration_ids": list(devices),
@@ -43,8 +42,5 @@ def push(user_id: int, notification_data: Dict) -> None:
         method="POST",
         url=url,
         data=json.dumps(payload),
-        headers={
-            "Authorization": settings.FCM_SERVER_TOKEN,
-            "Content-type": "application/json",
-        },
+        headers={"Authorization": settings.FCM_SERVER_TOKEN, "Content-type": "application/json"},
     )

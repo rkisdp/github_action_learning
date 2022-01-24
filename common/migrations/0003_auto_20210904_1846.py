@@ -5,28 +5,38 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('common', '0002_auto_20210830_0318'),
-    ]
+    dependencies = [("common", "0002_auto_20210830_0318")]
 
     operations = [
         migrations.AddField(
-            model_name='notification',
-            name='type',
-            field=models.CharField(choices=[('EMAIL', 'Email Notification'), ('SMS', 'SMS Notification'), ('PUSH', 'Push Notification'), ('CONSOLE', 'Dashboard Notification')], default='PUSH', max_length=32, verbose_name='Type of notification'),
+            model_name="notification",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("EMAIL", "Email Notification"),
+                    ("SMS", "SMS Notification"),
+                    ("PUSH", "Push Notification"),
+                    ("CONSOLE", "Dashboard Notification"),
+                ],
+                default="PUSH",
+                max_length=32,
+                verbose_name="Type of notification",
+            ),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='extra_data',
-            field=models.JSONField(blank=True, default=dict, null=True, verbose_name='Extra data'),
+            model_name="notification",
+            name="extra_data",
+            field=models.JSONField(blank=True, default=dict, null=True, verbose_name="Extra data"),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="notification",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AddIndex(
-            model_name='notification',
-            index=models.Index(fields=['type'], name='common_noti_type_5e1883_idx'),
+            model_name="notification",
+            index=models.Index(fields=["type"], name="common_noti_type_5e1883_idx"),
         ),
     ]

@@ -7,12 +7,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 # project imports
-from utils.core.models import TimeStampable
 from common import constants
-from common.managers.activity_config import (
-    ActivityConfigManager,
-    ActivityConfigQuerySet,
-)
+from common.managers.activity_config import (ActivityConfigManager,
+                                             ActivityConfigQuerySet)
+from utils.core.models import TimeStampable
+
 from .notification_template import NotificationTemplate
 
 
@@ -33,7 +32,8 @@ class ActivityConfig(TimeStampable):
         on_delete=models.CASCADE,
         verbose_name=_("Email Template"),
         related_name="email_template_activity_configs",
-        null=True, blank=True,
+        null=True,
+        blank=True,
     )
 
     sms_template = models.ForeignKey(
@@ -41,14 +41,16 @@ class ActivityConfig(TimeStampable):
         on_delete=models.CASCADE,
         verbose_name=_("SMS Template"),
         related_name="sms_template_activity_configs",
-        null=True, blank=True,
+        null=True,
+        blank=True,
     )
     push_template = models.ForeignKey(
         to=NotificationTemplate,
         on_delete=models.CASCADE,
         verbose_name=_("Push Template"),
         related_name="push_template_activity_configs",
-        null=True, blank=True,
+        null=True,
+        blank=True,
     )
 
     objects = ActivityConfigManager.from_queryset(ActivityConfigQuerySet)()
