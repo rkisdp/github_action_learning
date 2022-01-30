@@ -23,6 +23,12 @@ all:
 #detached:
 #	$(docker_compose) build
 
+black:
+	/bin/bash file_formatter.sh
+
+test:
+	/bin/bash test.sh
+
 nuke-it-all:
 	$(docker_compose) down --volumes --remove-orphans
 	docker system prune -f

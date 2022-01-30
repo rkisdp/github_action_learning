@@ -40,17 +40,19 @@ DJANGO_APPS = [
     "django.contrib.postgres",
 ]
 
-LOCAL_APPS = ["accounts", "common", "portfolio", "contact"]
+LOCAL_APPS = ["apps.accounts", "apps.common", "apps.portfolio", "apps.contact"]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_celery_results",
     "django_celery_beat",
     "corsheaders",
+    "drf_yasg",
     "storages",
     "import_export",
     "django_filters",
     "rest_framework.authtoken",
+    "request",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -62,6 +64,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     # 'django.middleware.csrf.CsrfViewMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "request.middleware.RequestMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -97,6 +100,7 @@ DATABASES = {
         "PASSWORD": config("DB_PASSWORD"),
         "HOST": config("DB_HOST"),
         "PORT": config("DB_PORT", cast=int),
+        "TEST": {"NAME": config("TEST_DB")},
     }
 }
 
@@ -188,3 +192,5 @@ ENV_STAGE = config("ENV_STAGE")
 AUTH_USER_MODEL = "accounts.User"
 FCM_SERVER_TOKEN = config("FCM_SERVER_TOKEN")
 FCM_HOST = "https://fcm.googleapis.com/fcm/send"
+
+REQUEST_IGNORE_PATHS = ("admin/",)

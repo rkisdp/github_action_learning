@@ -1,0 +1,1 @@
+black --line-length 100 . && isort --atomic --remove-redundant-aliases . && autoflake --expand-star-imports --remove-all-unused-imports --ignore-init-module-imports --remove-duplicate-keys --remove-unused-variables --recursive --in-place .

@@ -10,7 +10,7 @@ from django.conf import settings
 from requests import request
 
 # ORM imports
-from common.models import DeviceToken
+from apps.common.models import DeviceToken
 
 
 def push(user_id: int, notification_data: Dict) -> None:
